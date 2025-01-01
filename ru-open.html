@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RU Open?</title>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  body {
+    background-color: white;
+  }
+
+  
+  .glow {
+    font-size: 70px;
+    color: #fff;
+    margin-bottom: 40px;
+margin-top: 40px;
+    font-family: 'Linear Beam'    ;
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  .glow em {
+  font-size: 18px; 
+  display: block; 
+  margin-right: 25px;
+  margin-top: -8px;
+}
+
+
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #ffecec, 0 0 30px #ffecec, 0 0 40px #ffecec, 0 0 50px #ffecec, 0 0 60px #ffecec, 0 0 70px #ffecec;
+    }
+    
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #CC0033, 0 0 40px #CC0033, 0 0 50px #CC0033, 0 0 60px #CC0033, 0 0 70px #CC0033, 0 0 80px #CC0033;
+    }
+  }
+  </style>
+
+  <style>
+    body {
+      background-color: #050b10;
+      font-family: "futura";
+      color: white;
+    }
+
+    .restaurant {
+  width: 200px;
+  margin: 20px;
+  background-color: rgb(117, 128, 137, .1);
+  text-align: center;
+  padding: 10px;
+  font-family: "futura";
+  padding: 30px;
+  backdrop-filter: blur(10px);
+}
+
+/* Update this section for restaurant names to use Didot */
+.restaurant h3 {
+  font-family: 'futura';
+  font-weight: normal;  /* Ensures Didot is used correctly */
+}
+
+.restaurant img {
+  height: 130px;
+  width: 190px;
+}
+
+    .open {
+      color: rgb(155, 255, 148);
+
+    }
+    .closed {
+      color: #CC0033;
+    }
+    #restaurants-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 50px;
+      font-family: futura;
+    }
+    button {
+      padding: 10px 20px;
+      border: 0px;
+      margin: 5px;
+      background-color: #050b10;
+      color: white;
+      font-family: "futura";
+      cursor: pointer;
+      border-bottom:1px solid #ffffff;
+    }
+    button.active {
+        padding: 10px 20px;
+      border: 0px;
+      margin: 5px;
+      background-color: #050b10;
+      color: #CC0033;
+      font-family: "futura";
+      cursor: pointer;
+      border-bottom:1px solid #CC0033;
+    }
+    .howdy {
+      padding: 1px;
+      font-size:x-small;
+      margin-top: -10px;
+      margin-left: -10px;
+      margin-right: -10px;
+      background-color: #CC0033;
+      color: #fff4e6;
+    }
+
+    footer {
+        padding: 1px;
+      font-size:x-small;
+      margin-bottom: -10px;
+      margin-left: -10px;
+      margin-right: -10px;
+      background-color: #CC0033;
+      color: #fff4e6;
+    }
+  </style>
+</head>
+<body>
+<center>
+  <div class="howdy">
+    <p><em>* holiday hours and special circumstances are not calculated on here! *</em></p>
+  </div>
+
+
+  <p class="glow">RU OPEN?<br>
+    <em> ⭑ RUTGERS RESTAURANT TRACKER ⭑</em></p>
+
+
+  <div>
+    <button onclick="changeCampus('busch')">BUSCH</button>
+    <button onclick="changeCampus('collegeAve')">COLLEGE AVE</button>
+    <button onclick="changeCampus('cookDouglass')">COOK/DOUG</button>
+    <button onclick="changeCampus('livingston')">LIVINGSTON</button>
+  </div><br><br>
+
+  <div id="restaurants-container">
+  </div>
+
+  <script src="script.js"></script>
+</center>
+</body>
+</html>
+
+<script>
+// Updated data for each New Brunswick campus
+const campusData = {
+  busch: [
+    { name: "Busch Dining Hall", image: "https://i.pinimg.com/736x/58/64/10/58641073736d5b232599d462879f87cb.jpg", hours: getRestaurantHours("07:00", "23:00", "09:30", "20:00") },
+    { name: "Woody's Café", image: "https://i.ibb.co/s1JtmxD/69503452-2925851287428999-6020299858311643136-n.jpg", hours: getRestaurantHours("07:30", "18:00", "07:30", "18:00") },
+    { name: "Harvest Juice", image: "https://i.ibb.co/0CbMjwk/9.jpg", hours: getRestaurantHours("10:00", "15:30", "10:00", "15:30") },
+    { name: "Szechwan Ichiban", image: "https://i.ibb.co/m58NQB9/l.jpg", hours: getRestaurantHours("11:00", "20:00", "11:00", "20:00") },
+    { name: "Panera", image: "https://i.ibb.co/Rh83rXz/2018-04-03.jpg", hours: getRestaurantHours("08:00", "20:00", "11:00", "20:00") },
+    { name: "Gerlanda's Pizza", image: "https://i.ibb.co/jV0Jbtn/ANXAkq-GDa-T49ik-Ps-Ojm7-Vgh2xbz4xw7e-XPHJS2-SPr-SC6tm-Fw-Kt0v9f0s-RFV2jk-DCo-U2-BICIa4mwvwk-ZHU0-As.jpg", hours: getRestaurantHours("08:00", "22:00", "08:00", "22:00", "08:00", "22:00", "08:00", "20:00", null, null, "08:00", "22:00") },
+    { name: "Moes", image: "https://i.ibb.co/7CNQCxw/Screenshot-2024-11-20-at-2-15-28-AM.png", hours: getRestaurantHours("10:00", "23:00", "10:00", "23:00", "10:00", "23:00") }
+  ],
+  cookDouglass: [
+    { name: "Neilsen Dining Hall", image: "https://i.ibb.co/z5yK7Wy/image.png", hours: getRestaurantHours("07:00", "21:00", "09:30", "20:00") },
+    { name: "Douglass Café", image: "https://i.ibb.co/jGhx8sK/ec9dc050534974067bdcaac107119044.jpg", hours: getRestaurantHours("08:00", "20:00", "08:00", "16:00") },
+    { name: "Cook Café", image: "https://i.ibb.co/w0rnwFs/Screenshot-2024-11-22-at-6-57-58-PM.png", hours: getRestaurantHours("15:00", "23:00") },
+    { name: "Red Pine Pizza", image: "https://i.ibb.co/ypDq921/image.png", hours: getRestaurantHours("11:00", "20:00", "11:00", "16:00") },
+    { name: "DC Bagels", image: "https://i.ibb.co/h7BQhq8/Screenshot-2024-11-22-at-6-56-56-PM.png", hours: getRestaurantHours("08:00", "16:00") },
+    { name: "Harvest", image: "https://i.ibb.co/nRsHjcQ/harvest-img-6504.jpg", hours: getRestaurantHours("09:00", "14:30") }
+  ],
+  livingston: [
+    { name: "Livingston Dining Hall", image: "https://i.ibb.co/k64yd3q/image.png", hours: getRestaurantHours("07:00", "21:00", "09:30", "20:00") },
+    { name: "Kilmer's Market", image: "https://i.ibb.co/wMLNshh/image.png", hours: getRestaurantHours("11:00", "22:00", "11:00", "22:00", "11:00", "22:00", "11:00", "20:00", null, null) },
+    { name: "Sbarro", image: "https://i.ibb.co/wB06WCY/image.png", hours: getRestaurantHours("11:00", "23:00", "11:00", "23:00", "11:00", "23:00", "11:00", "17:00", "11:00", "17:00") },
+    { name: "Qdoba", image: "https://i.ibb.co/tDmRXVD/image.png", hours: getRestaurantHours("10:30", "21:00", "10:30", "21:00", "10:30", "22:00", "10:30", "22:00", "10:30", "22:00", "10:30", "22:00", "10:30", "22:00") },
+    { name: "Henry's Diner", image: "https://i.ibb.co/2cQHMrz/image.png", hours: getRestaurantHours("12:00", "18:00", "12:00", "18:00") }
+  ],
+  collegeAve: [
+    { name: "Café West", image: "https://i.ibb.co/1sLRrKv/image.png", hours: getRestaurantHours("09:00", "23:00", "09:00", "20:00") },
+    { name: "The Atrium", image: "https://i.ibb.co/6Fptnf7/image.png", hours: getRestaurantHours("07:00", "23:00", "07:00", "23:00", "07:00", "23:00", "07:00", "21:00", "09:30", "20:00", "09:30", "20:00") },
+    { name: "Krispy Pizza", image: "https://i.ibb.co/cXFpYWn/image.png", hours: getRestaurantHours("11:00", "22:00", "11:00", "22:00", "11:00", "23:00", "12:00", "22:00") },
+    { name: "Jersey Mikes", image: "https://i.ibb.co/Rvcckfb/image.png", hours: getRestaurantHours("10:00", "20:00", "10:00", "21:00", "10:00", "21:00", "10:00", "21:00", "10:00", "21:00", "10:00", "20:00", "10:00", "20:00") },
+    { name: "Hansel and Griddle", image: "https://i.ibb.co/YdG1PSv/image.png", hours: getRestaurantHours("09:00", "00:00", "09:00", "00:00", "09:00", "18:00", null, null, "09:00", "03:00", "09:00", "03:00", "09:00", "03:00") },
+    { name: "Stuff Yer Face", image: "https://i.ibb.co/X82mHdf/image.png", hours: getRestaurantHours("11:00", "00:30", "11:00", "00:30", "11:00", "00:30", "11:00", "00:30", "11:00", "01:00", "11:00", "01:00", "11:00", "00:30") },
+    { name: "Honeygrow", image: "https://i.ibb.co/wpjr5bC/image.png", hours: getRestaurantHours("11:00", "20:00", "11:00", "21:00", "11:00", "21:00", "11:00", "21:00", "11:00", "21:00", "11:00", "21:00", "11:00", "20:00") },
+    { name: "Panera", image: "https://i.ibb.co/BT3wVGW/image.png", hours: getRestaurantHours("09:00", "19:00", null, null, null, null, "09:00", "19:00", "09:00", "17:00", "09:00", "17:00", "09:00", "17:00") },
+    { name: "El Jefes", image: "https://i.ibb.co/GvmcPbg/image.png", hours: getRestaurantHours("08:00", "04:00", "08:00", "04:00", "08:00", "04:00", "08:00", "04:00", "08:00", "04:00", "08:00", "04:00", "08:00", "04:00") },
+    { name: "RU Hungry", image: "https://i.ibb.co/68HzZnt/image.png", hours: getRestaurantHours("08:00", "04:00", "08:00", "04:00", "08:00", "04:00", "08:00", "04:00", "08:00", "04:00", "08:00", "04:00", "08:00", "04:00") }
+  ]
+};
+
+// Function to generate hours for a restaurant
+function getRestaurantHours(openTime, closeTime, ...extraTimes) {
+  const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+  let hours = {};
+  
+  days.forEach((day, index) => {
+    const open = (index === 0 ? openTime : extraTimes[index * 2]) || openTime;  // Set open time
+    const close = (index === 0 ? closeTime : extraTimes[index * 2 + 1]) || closeTime;  // Set close time
+
+    hours[day] = { open: open, close: close };
+  });
+
+  return hours;
+}
+
+// Function to check if a restaurant is open
+function isRestaurantOpen(restaurant) {
+  const today = new Date();
+  const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+  const currentTime = today.getHours() * 60 + today.getMinutes();
+
+  const dayName = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][dayOfWeek];
+  const openTime = restaurant.hours[dayName].open.split(':');
+  const closeTime = restaurant.hours[dayName].close.split(':');
+
+  const openMinutes = parseInt(openTime[0]) * 60 + parseInt(openTime[1] || '00');
+  let closeMinutes = parseInt(closeTime[0]) * 60 + parseInt(closeTime[1] || '00');
+
+  // If close time is before 8 AM, it means it's actually the next day
+  if (closeMinutes < openMinutes) {
+    closeMinutes += 24 * 60;  // Add 24 hours to close time to handle the next day
+  }
+
+  return currentTime >= openMinutes && currentTime <= closeMinutes;
+}
+
+// Function to display restaurants for the selected campus
+function displayRestaurants(campus) {
+  const container = document.getElementById('restaurants-container');
+  container.innerHTML = ''; // Clear previous content
+
+  campusData[campus].forEach(restaurant => {
+    const isOpen = isRestaurantOpen(restaurant);
+    const statusText = isOpen ? 'OPEN' : 'CLOSED';
+    const statusClass = isOpen ? 'open' : 'closed';
+
+    const restaurantElement = document.createElement('div');
+    restaurantElement.classList.add('restaurant');
+    restaurantElement.innerHTML = `
+      <img src="${restaurant.image}" alt="${restaurant.name}" />
+      <h3>${restaurant.name}</h3>
+      <p class="${statusClass}">${statusText}</p>
+    `;
+    container.appendChild(restaurantElement);
+  });
+}
+
+// Function to change campus and display corresponding restaurants
+function changeCampus(campus) {
+  // Remove 'active' class from all campus buttons
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(button => {
+    button.classList.remove('active');
+  });
+
+  // Add 'active' class to the selected campus button
+  const activeButton = document.querySelector(`button[onclick="changeCampus('${campus}')"]`);
+  activeButton.classList.add('active');
+
+  // Display restaurants for the selected campus
+  displayRestaurants(campus);
+}
+
+// Initial load for Busch campus
+displayRestaurants('busch');
+
+</script>
+
+
+
+<center>
+    <footer>
+        <a href="destination.html">
+      <p class="styled-btn">About</p></a>
+    </footer>
+  </center>
+<style>
+
+
+  .styled-btn {
+        height: 20px;
+        width: 40px;
+        color: white;
+        font-family: "Futura";
+        font-weight: lighter;
+        cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+
+  }
+  
+  .styled-btn:hover {
+    border-bottom:1px solid #ffffff;
+}
+  
+  </style>
